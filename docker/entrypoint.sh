@@ -4,7 +4,7 @@ set -e
 # Fix: Create a placeholder .env file if it's missing
 if [ ! -f /var/www/html/.env ]; then
     echo "Creating .env placeholder for Laravel..."
-    touch /var/www/html/.env
+    echo "APP_KEY=" > /var/www/html/.env
 fi
 
 # Generate APP_KEY if it's not already set
@@ -16,5 +16,4 @@ php artisan migrate --force
 php artisan config:cache
 php artisan route:cache
 
-exec "$@"
 exec "$@"
